@@ -26,7 +26,8 @@ def compare_notes(a, b):
 
 
 out = open('out.js', 'w', encoding='utf-8')
-print('function play() {', file=out)
+print('function play(n) {', file=out)
+print('    switch(n) {', file=out)
 
 # for a in track.notes:
 #     call = (
@@ -44,11 +45,13 @@ for a in track.notes:
         bars[n] = [a]
 
 for n in sorted(bars.keys()):
-    print(f'    // bar {n + 1}', file=out)
+    print(f'    case {n}: // bar {n + 1}', file=out)
     for a in sorted(bars[n], key=compare_notes):
         call = (
-            f'    playNote({a.pitch}, {a.start_time}, {a.end_time})'
+            f'        playNote({a.pitch}, n + {a.start_time - n}, n + {a.end_time - n})'
         )  # {a.numerator}/{a.denominator}
         print(call, file=out)
+    print('        break', file=out)
 
+print('    }', file=out)
 print('}', file=out)

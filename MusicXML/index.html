@@ -13,7 +13,12 @@
         <script src="out.js"></script>
         <script>
             document.getElementById('play').addEventListener('click', function () {
-                init().then(play)
+                init().then(() => {
+                    play(0)
+                    play(1)
+                    play(2)
+                    play(3)
+                })
             })
         </script>
     </body>

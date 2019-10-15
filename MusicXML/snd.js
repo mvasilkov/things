@@ -1,6 +1,6 @@
 'use strict'
 
-const TEMPO_MUL = 120 / 115
+const TEMPO_MUL = 120 / 118
 
 function noteFreq(n) {
     return 440 * Math.pow(2, (n - 69) / 12)
